@@ -16,12 +16,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.pokemonsjc.Pokemon
 import com.example.pokemonsjc.R
 
-object Items{
-
     @Composable
-    fun PokemonItem() {
+    fun PokemonItem(pokemon: Pokemon, click: () -> Unit) {
         Card(shape = RoundedCornerShape(2.dp),
                 backgroundColor = Color.White,
                 elevation = 8.dp,
@@ -51,13 +50,13 @@ object Items{
                             start.linkTo(img_pokemon.end)
                         })
 
-                Text(text = "1", fontSize = 20.sp, maxLines = 1, fontWeight = FontWeight.Bold, color = Color.Black,
+                Text(text = pokemon.id.toString(), fontSize = 20.sp, maxLines = 1, fontWeight = FontWeight.Bold, color = Color.Black,
                         modifier = Modifier.padding(16.dp).constrainAs(text_pokemon_id) {
                             bottom.linkTo(gl_horizontal)
                             start.linkTo(text_id.end)
                         })
 
-                Text(text = "Charmander", fontSize = 24.sp, maxLines = 2, color = Color.Black,
+                Text(text = pokemon.name, fontSize = 24.sp, maxLines = 2, color = Color.Black,
                         modifier = Modifier.padding(16.dp).constrainAs(text_pokemon_name) {
                             top.linkTo(gl_horizontal)
                             start.linkTo(img_pokemon.end)
@@ -65,4 +64,3 @@ object Items{
             }
         }
     }
-}

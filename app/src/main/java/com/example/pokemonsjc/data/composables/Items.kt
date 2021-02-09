@@ -1,7 +1,5 @@
-package com.example.pokemonsjc.composables
+package com.example.pokemonsjc.data.composables
 
-import android.app.Application
-import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -13,14 +11,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.pokemonsjc.Pokemon
 import com.example.pokemonsjc.R
+import com.example.pokemonsjc.data.models.Pokemon
 
-    @Composable
-    fun PokemonItem(pokemon: Pokemon, click: () -> Unit) {
+@Composable
+    fun PokemonItem(
+    pokemon: Pokemon,
+    click: () -> Unit
+) {
         Card(shape = RoundedCornerShape(2.dp),
                 backgroundColor = Color.White,
                 elevation = 8.dp,
@@ -36,13 +36,13 @@ import com.example.pokemonsjc.R
                 val gl_horizontal = createGuidelineFromTop(0.5f)
 
                 Image(bitmap = imageResource(id = R.drawable.no_image_found),
-                        contentDescription = "",
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier.padding(16.dp).aspectRatio(1f).fillMaxHeight()
-                                .constrainAs(img_pokemon) {
-                                    start.linkTo(parent.start)
-                                    top.linkTo(parent.top)
-                                })
+                    contentDescription = "",
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.padding(16.dp).aspectRatio(1f).fillMaxHeight()
+                        .constrainAs(img_pokemon) {
+                            start.linkTo(parent.start)
+                            top.linkTo(parent.top)
+                        })
 
                 Text(text = "ID: ", fontSize = 20.sp, maxLines = 1, fontWeight = FontWeight.Bold, color = Color.Black,
                         modifier = Modifier.padding(16.dp).constrainAs(text_id) {

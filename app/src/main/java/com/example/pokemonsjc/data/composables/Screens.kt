@@ -1,4 +1,4 @@
-package com.example.pokemonsjc.composables
+package com.example.pokemonsjc.data.composables
 
 import android.app.Application
 import androidx.compose.foundation.Image
@@ -18,30 +18,24 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
-import com.example.pokemonsjc.Pokemon
 import com.example.pokemonsjc.R
+import com.example.pokemonsjc.data.models.Pokemon
 
 class Screens(app: Application) {
 
     private val color_yellow = ContextCompat.getColor(app, R.color.yellow)
-    private val pokemons = listOf(
-            Pokemon(1, "Charmander"),
-            Pokemon(2, "Squirtle"),
-            Pokemon(1, "Charmander"),
-            Pokemon(1, "Charmander"),
-            Pokemon(1, "Charmander"),
-            Pokemon(1, "Charmander"),
-            Pokemon(1, "Charmander"),
-    )
 
     @Composable
-    fun PokemonsScreen() {
+    fun PokemonsScreen(
+        pokemons: List<Pokemon>
+    ) {
         ConstraintLayout(modifier = Modifier
                 .background(color = Color.White)
                 .fillMaxWidth()
                 .fillMaxHeight()) {
             val rv_pokemons = createRef()
             val toolbar = createRef()
+
             LazyColumn(modifier = Modifier.constrainAs(rv_pokemons) {
                 top.linkTo(toolbar.bottom)
             }) {
@@ -53,6 +47,7 @@ class Screens(app: Application) {
                     })
                 }
             }
+
             TopAppBar(
                     title = { Text("Pokemons") },
                     backgroundColor = Color(color_yellow),
